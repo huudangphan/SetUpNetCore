@@ -5,18 +5,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QTS.Entity;
+using QTS.Commons;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Data;
+using System.Reflection.Emit;
+using System.Reflection.Metadata;
+using System.Security.Cryptography;
+using static QTS.Commons.Enums;
+
 namespace QTS.Services.Repositories
 {
-    public class GenericRepository<TEntity> where TEntity : class
+    public abstract class GenericRepository<TEntity> where TEntity : class
     {
         internal AppDbContext Context;
-        
+        public DatabaseClient database { get; set; }
         public GenericRepository(AppDbContext context)
         {
             this.Context = context;
            
 
         }
+        protected virtual HttpResult Process(DataSet ds,ActionType type)
+        {
+            try
+            {
+                using (var tran = database.BeginTransaction())
+                {
+
+                    var result = ProcessData(ds,type);
+                    tran.Commit();
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new HttpResult(MessageCode.Error, Functions.ToString(ex));
+                
+            }
+           
+        }
+        protected abstract HttpResult ProcessData(DataSet ds,ActionType type);
+        
         public IQueryable<TEntity> Select()
         {
             return Context.Set<TEntity>().AsQueryable();

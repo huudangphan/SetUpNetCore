@@ -5,6 +5,7 @@ using QTS.Commons;
 using QTS.Services.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using static QTS.Commons.Enums;
 namespace QTS.API.Controllers
 {
     [Route("api/[controller]/[action]")]
@@ -21,7 +22,7 @@ namespace QTS.API.Controllers
         [HttpGet]   
         public HttpResult Get()
         {            
-            var result = unitOfWork.TestRepository.Test();
+            var result = unitOfWork.TestRepository.Test(ActionType.Select);
             return result;
         }
     }

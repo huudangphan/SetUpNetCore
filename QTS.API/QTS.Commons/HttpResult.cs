@@ -35,6 +35,7 @@ namespace QTS.Commons
     public enum MessageCode
     {
         Success=200,
-        NotFound=404
+        NotFound=404,
+        Error
     }
 }
