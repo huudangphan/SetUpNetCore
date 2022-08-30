@@ -8,5 +8,6 @@ namespace QTS.Commons
 {
     public class GlobalData
     {
+        public static string connectionStr { get; set; }
     }
 }

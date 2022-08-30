@@ -7,22 +7,17 @@ using QTS.Entity;
 using QTS.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer;
-
+using QTS.Commons;
 namespace QTS.Services
 {
     public class AppDbContext : DbContext
     {
                
         public AppDbContext(DbContextOptionsBuilder options)
-        {
-            options.UseSqlServer(@"Data Source=PC;Initial Catalog=Test;Integrated Security=True");
-        }
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-            
+        {            
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-=> options.UseSqlServer(@"Data Source=PC;Initial Catalog=Test;Integrated Security=True");
+=> options.UseSqlServer(GlobalData.connectionStr);
 
         public DbSet<TestEntity> TestEntity { get; set; }
         

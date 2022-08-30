@@ -8,17 +8,16 @@ using QTS.Services.Repositories;
 using QTS.Entity;
 using System.Data.Entity;
 using Microsoft.EntityFrameworkCore;
-
+using QTS.Commons;
 namespace QTS.Services
 {
     public class UnitOfWorks:IUnitOfWorks
-    {
-        private GenericRepository<TestEntity> testRepository;
+    {        
         private AppDbContext _appDbContext;
         public UnitOfWorks()
         {
             DbContextOptionsBuilder option = new DbContextOptionsBuilder();
-            option.UseSqlServer("Data Source=PC;Initial Catalog=Test; Integrated Security=true");
+            option.UseSqlServer(GlobalData.connectionStr);
             _appDbContext = new AppDbContext(option);          
         }
         public Itest TestRepository
