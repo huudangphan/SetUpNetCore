@@ -669,6 +669,7 @@
           "EntityFramework": "6.4.4",
           "Microsoft.Azure.DurableTask.Core": "2.11.0",
           "Microsoft.EntityFrameworkCore": "6.0.8",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.8",
           "QTS.Commons": "1.0.0",
           "QTS.Entity": "1.0.0",
           "System.Data.SqlClient": "4.8.3"

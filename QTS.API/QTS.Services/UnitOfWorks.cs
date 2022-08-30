@@ -7,23 +7,25 @@ using QTS.Services.Interfaces;
 using QTS.Services.Repositories;
 using QTS.Entity;
 using System.Data.Entity;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace QTS.Services
 {
     public class UnitOfWorks
     {
         private GenericRepository<TestEntity> testRepository;
-        private readonly AppDbContext context;
-        public UnitOfWorks(AppDbContext context)
+        private AppDbContext _appDbContext;
+        public UnitOfWorks()
         {
-            this.context = context;
+            DbContextOptionsBuilder option = new DbContextOptionsBuilder();
+            option.UseSqlServer("Data Source=PC;Initial Catalog=Test; Integrated Security=true");
+            _appDbContext = new AppDbContext(option);          
         }
-
         public Itest TestRepository
         {
-            get { return new Test(context); }
-        }        
-       
+            get { return new Test(_appDbContext); }
+        }
+      
+
     }
 }

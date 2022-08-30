@@ -81,3 +81,4 @@ D:\QTS\QTS\QTS.API\QTS.API\obj\Debug\net6.0\refint\QTS.API.dll
 D:\QTS\QTS\QTS.API\QTS.API\obj\Debug\net6.0\QTS.API.pdb
 D:\QTS\QTS\QTS.API\QTS.API\obj\Debug\net6.0\QTS.API.genruntimeconfig.cache
 D:\QTS\QTS\QTS.API\QTS.API\obj\Debug\net6.0\ref\QTS.API.dll
+D:\QTS\QTS\QTS.API\QTS.API\obj\Debug\net6.0\QTS.API.MvcApplicationPartsAssemblyInfo.cs

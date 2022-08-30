@@ -8,7 +8,9 @@ namespace QTS.Entity
 {
     public class TestEntity
     {
-        public Nullable<int> Id { get; set; }
-        public string Name { get; set; }
+        //TestEntity
+        //TestEntity
+        public int Id { get; set; }
+        //public Nullable<> Name { get; set; }
     }
 }
