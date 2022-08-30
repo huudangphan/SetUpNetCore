@@ -1,0 +1,12 @@
+D:\QTS\QTS\QTS.API\QTS.Commons\bin\Debug\net6.0\QTS.Commons.deps.json
+D:\QTS\QTS\QTS.API\QTS.Commons\bin\Debug\net6.0\QTS.Commons.dll
+D:\QTS\QTS\QTS.API\QTS.Commons\bin\Debug\net6.0\QTS.Commons.pdb
+D:\QTS\QTS\QTS.API\QTS.Commons\obj\Debug\net6.0\QTS.Commons.csproj.AssemblyReference.cache
+D:\QTS\QTS\QTS.API\QTS.Commons\obj\Debug\net6.0\QTS.Commons.GeneratedMSBuildEditorConfig.editorconfig
+D:\QTS\QTS\QTS.API\QTS.Commons\obj\Debug\net6.0\QTS.Commons.AssemblyInfoInputs.cache
+D:\QTS\QTS\QTS.API\QTS.Commons\obj\Debug\net6.0\QTS.Commons.AssemblyInfo.cs
+D:\QTS\QTS\QTS.API\QTS.Commons\obj\Debug\net6.0\QTS.Commons.csproj.CoreCompileInputs.cache
+D:\QTS\QTS\QTS.API\QTS.Commons\obj\Debug\net6.0\QTS.Commons.dll
+D:\QTS\QTS\QTS.API\QTS.Commons\obj\Debug\net6.0\refint\QTS.Commons.dll
+D:\QTS\QTS\QTS.API\QTS.Commons\obj\Debug\net6.0\QTS.Commons.pdb
+D:\QTS\QTS\QTS.API\QTS.Commons\obj\Debug\net6.0\ref\QTS.Commons.dll

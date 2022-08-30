@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "7xOYp2JMecDKVvZg5wG2N60BJYIFsF54iQGIelYC+yc=",
+  "Source": "QTS.API",
+  "BasePath": "_content/QTS.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

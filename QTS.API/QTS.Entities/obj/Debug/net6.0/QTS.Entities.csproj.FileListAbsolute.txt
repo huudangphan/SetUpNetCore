@@ -1,0 +1,12 @@
+D:\QTS\QTS\QTS.API\QTS.Entities\bin\Debug\net6.0\QTS.Entities.deps.json
+D:\QTS\QTS\QTS.API\QTS.Entities\bin\Debug\net6.0\QTS.Entities.dll
+D:\QTS\QTS\QTS.API\QTS.Entities\bin\Debug\net6.0\QTS.Entities.pdb
+D:\QTS\QTS\QTS.API\QTS.Entities\obj\Debug\net6.0\QTS.Entities.csproj.AssemblyReference.cache
+D:\QTS\QTS\QTS.API\QTS.Entities\obj\Debug\net6.0\QTS.Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\QTS\QTS\QTS.API\QTS.Entities\obj\Debug\net6.0\QTS.Entities.AssemblyInfoInputs.cache
+D:\QTS\QTS\QTS.API\QTS.Entities\obj\Debug\net6.0\QTS.Entities.AssemblyInfo.cs
+D:\QTS\QTS\QTS.API\QTS.Entities\obj\Debug\net6.0\QTS.Entities.csproj.CoreCompileInputs.cache
+D:\QTS\QTS\QTS.API\QTS.Entities\obj\Debug\net6.0\QTS.Entities.dll
+D:\QTS\QTS\QTS.API\QTS.Entities\obj\Debug\net6.0\refint\QTS.Entities.dll
+D:\QTS\QTS\QTS.API\QTS.Entities\obj\Debug\net6.0\QTS.Entities.pdb
+D:\QTS\QTS\QTS.API\QTS.Entities\obj\Debug\net6.0\ref\QTS.Entities.dll
