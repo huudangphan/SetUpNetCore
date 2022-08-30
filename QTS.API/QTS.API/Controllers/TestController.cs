@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using static QTS.Commons.Enums;
 namespace QTS.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
+    //[Route("api/[controller]/[action]")]
+    //[ApiController]
     public class TestController : BaseAPIController
     {
         private UnitOfWorks unitOfWork;    

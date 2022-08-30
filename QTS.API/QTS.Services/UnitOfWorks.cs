@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QTS.Services
 {
-    public class UnitOfWorks
+    public class UnitOfWorks:IUnitOfWorks
     {
         private GenericRepository<TestEntity> testRepository;
         private AppDbContext _appDbContext;

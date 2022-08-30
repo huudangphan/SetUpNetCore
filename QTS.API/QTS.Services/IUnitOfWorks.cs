@@ -8,7 +8,7 @@ namespace QTS.Services
 {
     public class IUnitOfWorks 
     {
-        Itest Test { get; }
+        Itest TestRepository { get; }
     
     }
 }
