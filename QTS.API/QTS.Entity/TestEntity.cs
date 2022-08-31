@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 namespace QTS.Entity
 {
     public class TestEntity
-    {
-        //TestEntity
-        //TestEntity
-        public int Id { get; set; }
-        //public Nullable<> Name { get; set; }
+    {        
+        public int Id { get; set; }      
     }
 }

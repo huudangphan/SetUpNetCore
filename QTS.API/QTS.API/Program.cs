@@ -12,9 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 GlobalData.connectionStr = builder.Configuration.GetConnectionString("DefaultConnection");
-var a = GlobalData.connectionStr;
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
