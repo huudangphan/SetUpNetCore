@@ -12,39 +12,22 @@ using System.Reflection.Emit;
 using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using static QTS.Commons.Enums;
-
+using QTS.Services.Interfaces;
 namespace QTS.Services.Repositories
 {
-    public abstract class GenericRepository<TEntity> where TEntity : class
+    public abstract class GenericRepository<TEntity>:IGenericRepository<TEntity> where TEntity : class
     {
         internal AppDbContext Context;
         public DatabaseClient database { get; set; }
         public GenericRepository(AppDbContext context)
         {
             this.Context = context;
-           
+            database = new DatabaseClient(GlobalData.connectionStr);
 
         }
-        protected virtual HttpResult Process(DataSet ds,ActionType type)
-        {
-            try
-            {
-                using (var tran = database.BeginTransaction())
-                {
-
-                    var result = ProcessData(ds,type);
-                    tran.Commit();
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                return new HttpResult(MessageCode.Error, Functions.ToString(ex));
-                
-            }
-           
-        }
-        protected abstract HttpResult ProcessData(DataSet ds,ActionType type);
+        protected abstract HttpResult Process(TEntity ds, ActionType type);
+       
+        protected abstract HttpResult ProcessData(TEntity ds,ActionType type);
         
         public IQueryable<TEntity> Select()
         {

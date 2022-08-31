@@ -22,9 +22,9 @@ namespace QTS.Services
         }
         public Itest TestRepository
         {
-            get { return new Test(_appDbContext); }
+            get { return new TestRepository(_appDbContext); }
         }
-      
+
 
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QTS.Services.Interfaces;
+using QTS.Commons;
 namespace QTS.Services.Repositories
 {
     public class DatabaseClient : IDatabaseClient
@@ -20,18 +21,12 @@ namespace QTS.Services.Repositories
                 throw new ArgumentNullException("connectionString");
             ConnectionString = connectionString;
             DbTransaction = null;
-        }
-
-        public DatabaseClient(SqlConnection connection)
-        {
-            if (connection == null)
-                throw new ArgumentNullException("connection");
-            DbConnection = connection;
-            DbTransaction = null;
-        }
+        }       
         public DbTransaction BeginTransaction(IsolationLevel level = IsolationLevel.ReadCommitted)
-        {
-            DbTransaction = DbConnection.BeginTransaction(level);
+        {           
+            DbConnection = new SqlConnection(ConnectionString);
+            DbConnection.Open();
+            DbTransaction = DbConnection.BeginTransaction(level);            
             return DbTransaction;
         }
     }
