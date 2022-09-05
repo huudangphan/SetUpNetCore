@@ -9,6 +9,7 @@ using QTS.Commons;
 using QTS.Entity;
 using QTS.Services.Interfaces;
 using static QTS.Commons.Enums;
+
 namespace QTS.Services.Repositories
 {
     public class TestRepository:GenericRepository<TestEntity>,Itest
@@ -27,12 +28,12 @@ namespace QTS.Services.Repositories
 
         public HttpResult Delete(TestEntity id)
         {
-            return Process(null, ActionType.Remove);
+            return Process(id, ActionType.Remove);
         }
 
         public HttpResult Update(TestEntity id)
         {
-            return Process(null, ActionType.Update);
+            return Process(id, ActionType.Update);
         }
 
         /// <summary>
@@ -43,13 +44,21 @@ namespace QTS.Services.Repositories
         /// <returns></returns>
         protected override HttpResult Process(TestEntity ds, Enums.ActionType type)
         {
-            using (var tran = database.BeginTransaction())
+            try
             {
-                var result = ProcessData(ds, type);
-                context.SaveChanges();
-                tran.Commit();
-                return result;
-            }                    
+                using (var tran = database.BeginTransaction())
+                {
+                    var result = ProcessData(ds, type);
+                    context.SaveChanges();
+                    tran.Commit();
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new HttpResult(MessageCode.Error, Functions.ToString(ex.Message));
+            }
+                              
         }
         protected override HttpResult ProcessData(TestEntity ds, Enums.ActionType type)
         {

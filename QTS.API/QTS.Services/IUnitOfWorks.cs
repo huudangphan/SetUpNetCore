@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using QTS.Services.Interfaces;
 namespace QTS.Services
 {
-    public interface IUnitOfWorks 
+    public interface IUnitOfWorks :IDisposable
     {
         Itest TestRepository { get; }
     

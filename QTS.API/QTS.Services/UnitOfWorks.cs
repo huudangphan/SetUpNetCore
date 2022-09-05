@@ -14,17 +14,32 @@ namespace QTS.Services
     public class UnitOfWorks:IUnitOfWorks
     {        
         private AppDbContext _appDbContext;
+        private bool _disposed;
         public UnitOfWorks()
         {
             DbContextOptionsBuilder option = new DbContextOptionsBuilder();
             option.UseSqlServer(GlobalData.connectionStr);
             _appDbContext = new AppDbContext(option);          
         }
+        
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        private void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {                    
+                }
+            }
+            _disposed = true;
+        }
         public Itest TestRepository
         {
             get { return new TestRepository(_appDbContext); }
         }
-
-
     }
 }

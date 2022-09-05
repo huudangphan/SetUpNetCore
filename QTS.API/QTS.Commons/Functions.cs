@@ -24,9 +24,7 @@ namespace QTS.Commons
 
                 }
                 DateTime result;
-                if (obj == null) return DateTime.Now.Date;
-                //if (obj != null && DateTime.Parse(obj.ToString()).Year == 1899) return null;
-                //if (obj != null && DateTime.Parse(obj.ToString()).Year == 1900) return null;
+                if (obj == null) return DateTime.Now.Date;               
                 if (DateTime.TryParse(obj.ToString(), out result))
                     return result;
                 return DateTime.Now.Date;
@@ -168,9 +166,7 @@ namespace QTS.Commons
                 {
                     return DateTime.ParseExact(obj.ToString(), format, CultureInfo.InvariantCulture);
                 }
-                DateTime result;
-                //if (obj != null && DateTime.Parse(obj.ToString()).Year == 1899) return null;
-                //if (obj != null && DateTime.Parse(obj.ToString()).Year == 1900) return null;
+                DateTime result;               
                 if (DateTime.TryParse(obj.ToString(), out result))
                     return result;
                 return null;
