@@ -12,8 +12,8 @@ namespace QTS.Services.Interfaces
     public interface Itest
     {
         public HttpResult Select(ActionType type);
-        public HttpResult Delete(TestEntity id);
-        public HttpResult Add(TestEntity id);
-        public HttpResult Update(TestEntity id);
+        public Task<HttpResult> Delete(TestEntity id);
+        public Task<HttpResult> Add(TestEntity id);
+        public Task<HttpResult> Update(TestEntity id);
     }
 }

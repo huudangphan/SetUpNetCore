@@ -41,7 +41,7 @@ namespace QTS.Services.Repositories
             }
         }
        
-        protected virtual HttpResult ProcessData(TEntity ds,ActionType type)
+        protected virtual Task<MessageCode> ProcessData(TEntity ds,ActionType type)
         {
             throw new NotImplementedException();
         }

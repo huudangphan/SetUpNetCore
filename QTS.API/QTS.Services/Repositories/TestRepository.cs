@@ -21,64 +21,32 @@ namespace QTS.Services.Repositories
         }
         private IEnumerable<TestEntity> list { get; set; }
 
-        public HttpResult Add(TestEntity id)
-        {
-            return Process(id, ActionType.Add);
-        }
-
-        public HttpResult Delete(TestEntity id)
-        {
-            return Process(id, ActionType.Remove);
-        }
-
-        public HttpResult Update(TestEntity id)
-        {
-            return Process(id, ActionType.Update);
-        }
-
-        /// <summary>
-        ///  function to ensure all functions use the same transaction
-        /// </summary>
-        /// <param name="ds">parameter pass to api</param>
-        /// <param name="type">type query </param>
-        /// <returns></returns>
-        protected override HttpResult Process(TestEntity ds, Enums.ActionType type)
+        public async Task<HttpResult> Add(TestEntity id)
         {
             try
             {
-                using (var tran = database.BeginTransaction())
-                {
-                    var result = ProcessData(ds, type);
-                    context.SaveChanges();
-                    tran.Commit();
-                    return result;
-                }
+                int _id = id.Id;
+                await context.TestEntity.AddAsync(new TestEntity { Id = _id });
+                await context.SaveChangesAsync();
+                return new HttpResult(MessageCode.Success);
             }
             catch (Exception ex)
             {
+
                 return new HttpResult(MessageCode.Error, Functions.ToString(ex.Message));
             }
-                              
+            
         }
-        protected override HttpResult ProcessData(TestEntity ds, Enums.ActionType type)
+
+        public async Task<HttpResult> Delete(TestEntity id)
         {
-            switch (type)
-            {              
-                case ActionType.Add:
-                    // write code add here                    
-                    int id = ds.Id;
-                    context.TestEntity.Add(new TestEntity { Id=id});
-                    return new HttpResult(MessageCode.Success);                        
-                    break;
-                case ActionType.Remove:
-                    // write remove add here
-                    break;
-                case ActionType.Update:
-                    // write update add here
-                    break;
-            }
-            return new HttpResult();
+            return new HttpResult(MessageCode.Success);
         }
+
+        public async Task<HttpResult> Update(TestEntity id)
+        {
+            return new HttpResult(MessageCode.Success);
+        }               
        
         HttpResult Itest.Select(ActionType type)
         {

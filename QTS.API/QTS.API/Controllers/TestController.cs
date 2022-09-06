@@ -29,7 +29,7 @@ namespace QTS.API.Controllers
         public HttpResult Add([FromBody] TestEntity ds)
         {
             var result = unitOfWork.TestRepository.Add(ds);
-            return result;
+            return result.Result;
         }
     }
 }
