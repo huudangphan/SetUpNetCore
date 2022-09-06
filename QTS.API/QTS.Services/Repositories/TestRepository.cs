@@ -63,16 +63,7 @@ namespace QTS.Services.Repositories
         protected override HttpResult ProcessData(TestEntity ds, Enums.ActionType type)
         {
             switch (type)
-            {
-                case ActionType.Select:
-                    // write code select data here
-                    list = context.TestEntity.ToList();
-                    return new HttpResult(
-                        MessageCode.Success,
-                       "Thanh cong",
-                       list
-                        );                    
-                    break;
+            {              
                 case ActionType.Add:
                     // write code add here                    
                     int id = ds.Id;
@@ -88,15 +79,24 @@ namespace QTS.Services.Repositories
             }
             return new HttpResult();
         }
-        /// <summary>
-        /// Function is called from controller.
-        /// Every function like it is call to function "Process"
-        /// </summary>
-        /// <param name="type">type query data </param>
-        /// <returns></returns>
+       
         HttpResult Itest.Select(ActionType type)
         {
-            return Process(null, ActionType.Select);
+            try
+            {
+                list = context.TestEntity.ToList();
+                return new HttpResult(
+                    MessageCode.Success,
+                   "Thanh cong",
+                   list
+                    );
+            }
+            catch (Exception ex)
+            {
+                return new HttpResult(MessageCode.Error, Functions.ToString(ex.Message));
+            }
+           
+         
         }
     }
 }

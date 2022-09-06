@@ -11,8 +11,7 @@ using QTS.Commons;
 namespace QTS.Services
 {
     public class AppDbContext : DbContext
-    {
-               
+    {               
         public AppDbContext(DbContextOptionsBuilder options)
         {            
         }

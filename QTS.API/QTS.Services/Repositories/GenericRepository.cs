@@ -25,9 +25,26 @@ namespace QTS.Services.Repositories
             database = new DatabaseClient(GlobalData.connectionStr);
 
         }
-        protected abstract HttpResult Process(TEntity ds, ActionType type);
+        protected virtual HttpResult Process(TEntity ds, ActionType type)
+        {
+            try
+            {
+                using (var tran = database.BeginTransaction())
+                {                                     
+                    tran.Commit();
+                    return new HttpResult(MessageCode.Success);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new HttpResult(MessageCode.Error, Functions.ToString(ex.Message));
+            }
+        }
        
-        protected abstract HttpResult ProcessData(TEntity ds,ActionType type);
+        protected virtual HttpResult ProcessData(TEntity ds,ActionType type)
+        {
+            throw new NotImplementedException();
+        }
         
         public IQueryable<TEntity> Select()
         {
