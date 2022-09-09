@@ -41,6 +41,8 @@ namespace QTS.Commons
 
         [Description("Success")]
         Success = 200,
+        [Description("Unauthorized")]
+        Unauthorized = 401,
 
         [Description("Error")]
         Error = 2,

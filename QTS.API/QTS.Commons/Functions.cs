@@ -176,6 +176,98 @@ namespace QTS.Commons
                 return null;
             }
         }
+        private static int GetMaxDataLength()
+        {
+            if (Constants.RSA.fOAEP)
+                return ((Constants.RSA.KEY_SIZE - 384) / 8) + 7;
+            return ((Constants.RSA.KEY_SIZE - 384) / 8) + 37;
+        }
+        private static bool IsKeySizeValid()
+        {
+            return Constants.RSA.KEY_SIZE >= 384 &&
+                   Constants.RSA.KEY_SIZE <= 16384 &&
+                   Constants.RSA.KEY_SIZE % 8 == 0;
+        }
+
+        public static string Encrypt(string plainText, string publickey = "")
+        {
+            if (string.IsNullOrEmpty(publickey))
+            {
+                publickey = Constants.RSA.PublicKey;
+            }
+            if (string.IsNullOrEmpty(plainText))
+                throw new ArgumentException("Can not encryt data");
+
+
+            var maxLength = GetMaxDataLength();
+            if (Encoding.Unicode.GetBytes(plainText).Length > maxLength)
+                throw new ArgumentException("Can not encryt data");
+
+
+            if (!IsKeySizeValid())
+                throw new ArgumentException("Can not encryt data");
+
+
+            if (string.IsNullOrWhiteSpace(publickey))
+                throw new ArgumentException("Can not encryt data");
+
+
+            string encryptedText;
+
+            try
+            {
+                using (var rsaProvider = RSA.Create())
+                {
+                    rsaProvider.FromXmlString(publickey);
+                    var plainBytes = Encoding.Unicode.GetBytes(plainText);
+                    var encryptedBytes = rsaProvider.Encrypt(plainBytes, RSAEncryptionPadding.Pkcs1);
+                    encryptedText = Convert.ToBase64String(encryptedBytes);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Could not encryt data!");
+
+            }
+            return encryptedText;
+
+        }
+        public static string Decrypt(string encryptedText, string privatekey = "")
+        {
+            if (string.IsNullOrEmpty(privatekey))
+            {
+                privatekey = Constants.RSA.PrivateKey;
+            }
+
+            if (string.IsNullOrWhiteSpace(encryptedText))
+                throw new ArgumentException("Can not Decrypt data");
+
+            if (!IsKeySizeValid())
+                throw new ArgumentException("Can not Decrypt data");
+
+            if (string.IsNullOrWhiteSpace(privatekey))
+                throw new ArgumentException("Can not Decrypt data");
+
+            var plainText = "";
+
+
+            try
+            {
+                using (var rsaProvider = RSA.Create())
+                {
+                    rsaProvider.FromXmlString(privatekey);
+                    var encryptedBytes = Convert.FromBase64String(encryptedText);
+                    var plainBytes = rsaProvider.Decrypt(encryptedBytes, RSAEncryptionPadding.Pkcs1);
+                    plainText = Encoding.Unicode.GetString(plainBytes);
+                }
+            }
+            catch (Exception ex)
+            {              
+                throw new Exception("Could not Decrypt data");
+            }
+            return plainText;
+        }
 
     }
 }
