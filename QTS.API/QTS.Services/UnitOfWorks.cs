@@ -41,5 +41,10 @@ namespace QTS.Services
         {
             get { return new TestRepository(_appDbContext); }
         }
+
+        public IAuth AuthRepository
+        {
+            get { return new AuthRepository(_appDbContext); }
+        }
     }
 }

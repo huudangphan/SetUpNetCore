@@ -21,7 +21,7 @@ namespace QTS.Services.Repositories
         }
         private IEnumerable<TestEntity> list { get; set; }
 
-        public async Task<HttpResult> Add(TestEntity id)
+        async Task<HttpResult> Itest.Add(TestEntity id)
         {
             try
             {
@@ -34,13 +34,25 @@ namespace QTS.Services.Repositories
             {
 
                 return new HttpResult(MessageCode.Error, Functions.ToString(ex.Message));
-            }
-            
+            }            
         }
-
         public async Task<HttpResult> Delete(TestEntity id)
         {
-            return new HttpResult(MessageCode.Success);
+            try
+            {
+                var obDelete = await context.TestEntity.FindAsync(id);
+                if (obDelete != null)
+                {
+                    context.TestEntity.Remove(obDelete);
+                    await context.SaveChangesAsync();
+                }
+
+                return new HttpResult(MessageCode.Success);
+            }
+            catch (Exception ex)
+            {
+                return new HttpResult(MessageCode.Error, Functions.ToString(ex.Message));
+            }            
         }
 
         public async Task<HttpResult> Update(TestEntity id)
@@ -55,7 +67,7 @@ namespace QTS.Services.Repositories
                 list = context.TestEntity.ToList();
                 return new HttpResult(
                     MessageCode.Success,
-                   "Thanh cong",
+                   "Success",
                    list
                     );
             }

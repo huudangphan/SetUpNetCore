@@ -17,7 +17,7 @@ namespace QTS.Services.Repositories
 {
     public abstract class GenericRepository<TEntity>:IGenericRepository<TEntity> where TEntity : class
     {
-        internal AppDbContext Context;
+        public AppDbContext Context;
         public DatabaseClient database { get; set; }
         public GenericRepository(AppDbContext context)
         {
@@ -25,7 +25,13 @@ namespace QTS.Services.Repositories
             database = new DatabaseClient(GlobalData.connectionStr);
 
         }
-        protected virtual HttpResult Process(TEntity ds, ActionType type)
+        /// <summary>
+        /// Fucntion to ensure all query use same transaction
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        protected virtual HttpResult Process(TEntity entity, ActionType type)
         {
             try
             {
@@ -41,7 +47,7 @@ namespace QTS.Services.Repositories
             }
         }
        
-        protected virtual Task<MessageCode> ProcessData(TEntity ds,ActionType type)
+        protected virtual Task<MessageCode> ProcessData(TEntity entity,ActionType type)
         {
             throw new NotImplementedException();
         }
