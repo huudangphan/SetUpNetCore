@@ -32,7 +32,7 @@ namespace QTS.Services.Repositories
                             new Claim(JwtRegisteredClaimNames.Jti,
                             Guid.NewGuid().ToString())
                          }),
-                Expires = DateTime.UtcNow.AddMinutes(5),
+                Expires = DateTime.UtcNow.AddMinutes(30),
                 Issuer = issuer,
                 Audience = audience,
                 SigningCredentials = new SigningCredentials
