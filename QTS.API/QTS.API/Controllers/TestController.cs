@@ -8,14 +8,16 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using static QTS.Commons.Enums;
 using System.Data;
 using QTS.Entity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+
 namespace QTS.API.Controllers
 {
     //[AuthenticationToken] 
-    
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class TestController : BaseAPIController
     {
-        private UnitOfWorks unitOfWork;
-        public IConfiguration Configuration { get; }
+        private UnitOfWorks unitOfWork;  
         public TestController()
         {        
             unitOfWork=GetUnitOfWork();
@@ -29,10 +31,7 @@ namespace QTS.API.Controllers
         }
         [HttpPost]
         public HttpResult Add([FromBody] TestEntity ds)
-        {
-            /// Test generate access token
-            string accessToken=unitOfWork.AuthRepository.GenerateToken(new UserEntity { userName = "user", passWord = "pass" });
-            ///////
+        {            
             var result = unitOfWork.TestRepository.Add(ds);
             return result.Result;
         }

@@ -32,8 +32,9 @@ builder.Services.AddAuthentication(options =>
         (Encoding.UTF32.GetBytes(GlobalData.key)),
         ValidateIssuer = true,
         ValidateAudience = true,
-        ValidateLifetime = false,
-        ValidateIssuerSigningKey = true
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ClockSkew = TimeSpan.Zero
     };
 });
 builder.Services.AddAuthorization();
@@ -55,5 +56,5 @@ app.MapControllers();
 
 app.Run();
 
-app.UseAuthentication();
+
 
